@@ -9,11 +9,11 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Entity
+@Entity(name="seats")
 public class Seat extends  BaseModel{
-    private int rowNumber;
-    private int colNumber;
-    private int seatNumber;
+    private int rowNum;
+    private int colNum;
+    private String number;
     @Enumerated(EnumType.ORDINAL)
     private SeatType seatType;
 }
