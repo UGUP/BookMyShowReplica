@@ -1,6 +1,9 @@
 package com.example.BookMyShow.models;
 
+
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,12 +12,12 @@ import java.util.List;
 
 @Getter
 @Setter
-@Entity(name= "users")
-public class User extends BaseModel {
+@Entity
+public class Theatre extends BaseModel {
     private String name;
-    private String email;
-    private String password;
+    @ManyToOne
+    private  Region region;
     @OneToMany
-    private List<Booking> bookings;
-
+    //@ElementCollection
+    private List<Screen> screens;
 }
