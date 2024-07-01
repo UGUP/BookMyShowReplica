@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -52,7 +53,6 @@ public class BookingService {
             throw new ShowSeatNotFound(" Unable to find teh show seat id");
         }
 
-
         for(ShowSeat showseat:seatsRequested){
             if(!showseat.getShowSeatStatus().equals(ShowSeatStatus.AVAILABLE)){
               throw new ShowNotFoundException("Show seat not found exception");
@@ -65,7 +65,7 @@ public class BookingService {
         }
 
         Booking newBooking= new Booking();
-        int amount= priceCalculatorService.calculatePrice(seatsRequested);
+        int amount= priceCalculatorService.calculatePrice(show,seatsRequested);
         newBooking.setBookingStatus(BookingStatus.PENDING);
         newBooking.setShow(show);
         newBooking.setUser(user);
@@ -73,6 +73,7 @@ public class BookingService {
         newBooking.setLastUpdatedAt(new Date());
         newBooking.setCreatedAt(new Date());
         newBooking.setShowSeats(seatsRequested);
+        newBooking.setPayments(new ArrayList<>());
         bookingRepository.save(newBooking);
         return newBooking;
     }
