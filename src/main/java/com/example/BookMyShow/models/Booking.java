@@ -11,7 +11,6 @@ import java.util.List;
 @Setter
 @Entity
 public class Booking extends BaseModel{
-    private String bookingNumber;
     @ManyToOne
     private User user;
     @ManyToOne
