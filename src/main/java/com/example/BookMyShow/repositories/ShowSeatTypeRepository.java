@@ -13,5 +13,5 @@ import java.util.Optional;
 public interface ShowSeatTypeRepository extends JpaRepository<ShowSeatType,Long> {
     @Override
     Optional<ShowSeatType> findById(Long aLong);
-    List<ShowSeatType> findAllByShow(Long showId);
+    List<ShowSeatType> findAllByShow(Show show);
 }
