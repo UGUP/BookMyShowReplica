@@ -22,7 +22,7 @@ public class PriceCalculatorService {
     }
     public int calculatePrice(Show show, List<ShowSeat> showSeats) throws NoShowSeatTypeFound {
         int totalPrice=0;
-        List<ShowSeatType> showSeatTypes= showSeatTypeRepository.findAllByShow(show);
+        List<ShowSeatType> showSeatTypes= showSeatTypeRepository.findAllByShow(show.getId());
         for (ShowSeat showSeat : showSeats) { // 10
             for (ShowSeatType showSeatType : showSeatTypes) { // 3
                 if (showSeat.getSeat().getSeatType().equals(showSeatType.getSeatType())) {
